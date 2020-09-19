@@ -35,6 +35,24 @@
 		    "style" : {
 				"navigationStyle":"custom"
 				}
+		},
+		{
+		    "path" : "pages/detail/detail",
+		    "style" : {
+				"navigationStyle":"custom"
+				}
+		},
+		{
+		    "path" : "pages/friendquest/friendquest",
+		    "style" : {
+				"navigationStyle":"custom"
+				}
+		},
+		{
+		    "path" : "pages/chat/chat",
+		    "style" : {
+				"navigationStyle":"custom"
+				}
 		}
     ],
 	"globalStyle": {

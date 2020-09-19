@@ -17,9 +17,9 @@
 					用户
 				</view>
 				<view class="main-show" v-for="(item,index) in userarr" :key="index">
-					<view class="main-show-l">
+					<navigator url="../userhome/userhome?id=aaa" hover-class="none" class="main-show-l">
 						<image :src="item.imgurl" mode=""></image>
-					</view>
+					</navigator>
 					<view class="main-show-c" v-html="item.name">
 
 					</view>

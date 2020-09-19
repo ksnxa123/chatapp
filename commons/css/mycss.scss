@@ -74,6 +74,11 @@
 			color: #333333;
 			letter-spacing: 0;
 		}
+		.pic{
+			width: 68rpx;
+			height: 68rpx;
+			border-radius: 16rpx;
+		}
 		.pic2{
 			height: 40rpx;
 			width: 40rpx;
@@ -86,4 +91,25 @@
 			letter-spacing: -0.55px;		
 		}
 	}
+}
+.bottom-btn{
+	position: fixed;
+	display: flex;
+	align-items: center;
+	bottom: 0;
+	width: 100%;
+	height: 90rpx;
+	padding-top: 10rpx;
+	padding-bottom: env(safe-area-inset-bottom);
+}
+.btn1{
+	margin: 0 auto;
+	width: 684rpx;
+	height: 80rpx;
+	background:$uni-color-primary ;
+	border-radius: 5rpx;
+	font-size: 32rpx;
+	line-height: 80rpx;
+	text-align: center;
+	color: #272832;
 }
