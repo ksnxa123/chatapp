@@ -34,6 +34,7 @@
 								<image src="../../static/images/index/more.png" class="voice-img" mode=""></image>
 							</view>
 						</view>
+						<!-- 位置调用 -->
 						<view class="message" v-if="item.types==3">
 							<view class="msg-map" @tap="openLocation(item.message)">
 								<view class="map-name">{{item.message.name}}</view>
@@ -137,11 +138,12 @@
 				innerAudioContext.src = e;
 				innerAudioContext.play();
 			},
+			// 接收输入内容
 			inputs:function(e){
 				this.swan =true;
 				let len = this.msgs.length;
 				let nowTime = new Date();
-				let t = myfunc.spaceTime(this.oldTime,msg[i].time);
+				let t = myfunc.spaceTime(this.oldTime,nowTime);
 				if(t){
 					this.oldTime = t;
 				}
@@ -166,6 +168,7 @@
 				this.inputh = e;
 				this.goBottom();
 			},
+			// 滚动到底部
 			goBottom:function(){
 				this.swan = true;
 				this.scrollToView = '';
@@ -174,6 +177,7 @@
 					this.scrollToView = 'msg'+this.msgs[len].tip;
 				})
 			},
+			// 获取聊天数据
 			getMsg:function(page){
 				let msg = datas.message();
 				let maxpages = msg.length;
@@ -215,7 +219,7 @@
 				let map =[{
 					latitude:e.latitude,
 					longitude:e.longitude,
-					iconPath:'../../static/img/face.jpg'
+					iconPath:'../../static/images/img/face.jpg'
 				}]
 				return (map);
 			},
@@ -269,6 +273,7 @@
 	.top-bar{
 		background: rgba(244,244,244,0.96);
 		border-bottom: 1px solid $uni-border-color;	
+		position: fixed;
 	}
 	.displaynone{
 		display: none;

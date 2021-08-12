@@ -28,8 +28,11 @@
 				<input type="text" placeholder="用户名" @blur="getUsers" placeholder-style="color:#aaa;font-weight:400;"/>
 				<input type="password" placeholder="密码"  @blur="getPsw" placeholder-style="color:#aaa;font-weight:400;"/>
 			</view>
-			<view class="tips">
-				请输入用户名或密码！
+			<view v-if="getTips()" class="tips">
+				{{message}}
+			</view>
+			<view v-else='getTips2()' class="tips">
+				{{message}}
 			</view>
 		</view>
 		<button type="default" class="submit" @click="testFun">登录</button>
@@ -41,19 +44,29 @@
 		data() {
 			return {
 				usersname:'',
-				psw:''
+				psw:'',
+				token:'',
+				message:''
 			}
 		},
 		methods: {
 			testFun:function(){
 				uni.request({
-					url:'http://localhost:3000/test',
-					data:{
-						
+					url:'http://localhost:5050/login/login',
+					success(data) {
+						console.log(data.data)
 					},
-					method:"GET",
-					success:(data) => {
+					data:{
+						account:this.usersname,
+						pwd:this.psw
+					},
+					method:"POST",
+					fail(data){
+						// uni.redirectTo({
+						//     url: 'pages/sign/sign'
+						// });
 						console.log(data)
+						this.message = data.msg;
 					}
 				})
 			},
@@ -67,6 +80,16 @@
 			},
 			getPsw:function(e){
 				this.psw = e.detail.value;
+			},
+			getTips:function(){
+				if(this.usersname===''&&this.psw===''){
+					return true
+				}else{
+					return false
+				}
+			},
+			getTips2:function(){
+				
 			}
 		}
 	}

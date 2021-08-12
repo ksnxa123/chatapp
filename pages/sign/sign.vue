@@ -36,7 +36,7 @@
 				</view>
 			</view>
 		</view>
-		<button type="default" :class="[{submit:isok},{submit1:!isok}]" @click="testFun">注册</button>
+		<button type="default" :class="[{submit:!isok},{submit1:isok}]" @click="testFun">注册</button>
 	</view>
 </template>
 
@@ -45,8 +45,8 @@
 		data() {
 			return {
 				psw:"text",
-				isemail:true,
-				isusers:true,
+				isemail:false,
+				isusers:false,
 				look:false,
 				invalid:false,
 				employ:false,
@@ -58,7 +58,37 @@
 				urllooks:'../../static/images/index/closeeye.png'
 			}
 		},
+		computed:{
+			// 判断注册
+			// isOk:function(){
+			// 	if(this.isusers && this.isemail && this.passwords.length>5){
+			// 		this.isok = true;
+			// 	}else{
+			// 		this.isok = false;
+			// 	}
+			// 	return this.isok;
+			// }
+		},
 		methods: {
+			testFun:function(){
+				uni.request({
+					url:'http://localhost:5050/reginster',
+					success(data) {
+						console.log(data)
+					},
+					data:{
+						account:this.users,
+						pwd:this.passwords
+					},
+					method:"POST",
+					fail(data){
+						// uni.redirectTo({
+						//     url: 'pages/sign/sign'
+						// });
+						console.log(data)
+					}
+				})
+			},
 			looks:function(){
 				if(this.look){
 					this.psw = "password";
@@ -76,6 +106,7 @@
 				if(this.email.length>0){
 					if(reg.test(this.email)){
 						console.log('正确');
+						this.isemail = true;
 						this.invalid = false;
 					}else{
 						console.log("错误");
@@ -89,6 +120,7 @@
 					url:"../login/login"
 				})
 			},
+			// 匹配用户名
 			getUsers:function(e){
 				this.users = e.detail.value;
 				this.isOk();
@@ -105,6 +137,7 @@
 				}else{
 					this.isok = false;
 				}
+				return this.isok;
 			}
 		}
 	}

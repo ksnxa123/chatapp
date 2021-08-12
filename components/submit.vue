@@ -78,6 +78,7 @@
 			emojiPic,
 		},
 		methods:{
+			// 点击切换音频
 			records:function(){
 				this.isemoji = false;
 				this.ismore = false;
@@ -92,6 +93,7 @@
 					this.toc = "../../static/images/index/font.png";
 				}
 			},
+			// 表情图标
 			emoji:function(){
 				this.isemoji = !this.isemoji;
 				this.ismore = false;
@@ -110,10 +112,11 @@
 					this.getlocal();
 				},10)
 			},
+			// 表情接收
  			emotion:function(e){
 				this.msg = this.msg+e;
 			},
-			//表情内发送
+			//表情发送
 			emojiSend:function(){
 				if(this.msg.length>0){
 					this.send(this.msg,0)
@@ -174,6 +177,7 @@
 							latitude:res.latitude,
 							laongitude:res.longitude
 						}
+						this.send(data,3)
 				    }
 				});
 			},
@@ -188,6 +192,7 @@
 				  this.$emit('heights',data.height)
 				}).exec();
 			},
+			// 文字发送
 			inputs:function(e){
 				var cha = e.detail.value;
 				var pos = cha.indexOf('\n');
